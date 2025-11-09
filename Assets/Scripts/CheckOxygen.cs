@@ -3,6 +3,7 @@ using UnityEngine;
 public class CheckOxygen : MonoBehaviour
 {
     [SerializeField] GameObject _oxygenPrefab;
+    [SerializeField] GameObject _oxygenUI;
     [SerializeField] bool _check;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +18,7 @@ public class CheckOxygen : MonoBehaviour
         {
             _check = !_check;
             _oxygenPrefab.SetActive(_check);
+            _oxygenUI.SetActive(false);
         }
     }
 }
