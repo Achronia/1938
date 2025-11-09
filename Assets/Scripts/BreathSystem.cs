@@ -12,15 +12,24 @@ public class BreathSystem : MonoBehaviour
     [SerializeField] Image _oxygenBarImage;
     [SerializeField] Image _efectBarImage;
     [SerializeField] float _efectBarImageDelayer;
+
     [Header("        ")]
     [SerializeField] TextMeshProUGUI _oxygenText;
     [Header("        ")]
+
+    [Header("Sound")]
+    [SerializeField] AudioSource _cough;
+    [Header("        ")]
+
     [Header("Oxygen Amount")]
     [SerializeField] float _maxOxygen;
     [SerializeField] float _minOxygen;
     [SerializeField] float _currentOxygen = 100;
     [SerializeField] float _oxygenDecreaseTime;
     [SerializeField] float _oxygenDecreaseDamage;
+   
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,14 +42,35 @@ public class BreathSystem : MonoBehaviour
     {
         _oxygenText.text = _currentOxygen.ToString();
 
+        UIEffect();
+        SceneChange();
+    }
+
+    private void UIEffect()
+    {
         if (_oxygenBarImage.fillAmount != _efectBarImage.fillAmount)
         {
             _efectBarImage.fillAmount = Mathf.Lerp(_efectBarImage.fillAmount, _oxygenBarImage.fillAmount, _efectBarImageDelayer);
         }
+    }
+
+    private void SceneChange()
+    {
         if (_currentOxygen == _minOxygen)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Debug.Log("AAAA");
+        }
+
+
+        if (_currentOxygen==10)
+        {
+            _cough.Play();
+            Debug.Log("ÖKsürrrrrrrrrrrrr");
+        }
+        else if (_currentOxygen>10)
+        {
+            _cough.Stop();
         }
     }
 

@@ -14,7 +14,7 @@ public class CheckOxygen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             _check = !_check;
             _oxygenPrefab.SetActive(_check);
