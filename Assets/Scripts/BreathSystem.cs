@@ -24,7 +24,7 @@ public class BreathSystem : MonoBehaviour
     [Header("Oxygen Amount")]
     [SerializeField] float _maxOxygen;
     [SerializeField] float _minOxygen;
-    [SerializeField] float _currentOxygen = 100;
+    [SerializeField] float _currentOxygen;
     [SerializeField] float _oxygenDecreaseTime;
     [SerializeField] float _oxygenDecreaseDamage;
    
@@ -44,6 +44,11 @@ public class BreathSystem : MonoBehaviour
 
         UIEffect();
         SceneChange();
+
+        if (_currentOxygen>=_maxOxygen)
+        {
+            _currentOxygen = _maxOxygen;
+        }
     }
 
     private void UIEffect()
